@@ -1,0 +1,28 @@
+name: Java CI with Gradle
+
+on:
+  push:
+    branches: ["main", "master"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Code auschecken
+      uses: actions/checkout@v4
+
+    - name: Java 17 einrichten
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Projekt bauen und testen
+      run: ./gradlew build
+
+    - name: JAR-Datei als Artefakt speichern
+      uses: actions/upload-artifact@v4
+      with:
+        name: weather-api-jar
+        path: build/libs/weather-api-*.jar
