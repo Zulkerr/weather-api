@@ -18,6 +18,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Mache gradlew ausführbar
+      run: chmod +x ./gradlew
+
     - name: Projekt bauen und testen
       run: ./gradlew build
 
